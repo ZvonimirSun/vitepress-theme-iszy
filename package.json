@@ -1,11 +1,15 @@
 {
+  "name": "vitepress-theme-iszy",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.13.2",
+    "eslint": "^9.27.0",
+    "unocss": "^66.1.2",
     "vitepress": "^1.6.3",
     "vue": "^3.5.16"
-  },
-  "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
   }
 }
