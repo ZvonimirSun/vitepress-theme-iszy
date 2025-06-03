@@ -1,13 +1,22 @@
 import { defineConfig } from 'vitepress'
-import UnoCSS from 'unocss/vite'
+import { getThemeConfig } from '../src/node'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Vitepress Theme ISZY",
-  description: "A Vitepress theme for blog",
-  vite: {
-    plugins: [
-      UnoCSS()
-    ]
-  }
+  extends: getThemeConfig({
+    // Site
+    title: '随遇而安',
+    subtitle: '在自由的空气中漂浮',
+    description: '生活吐槽 & 学习记录',
+    keywords: '随遇而安, Dirge, iszy',
+    author: 'Dirge',
+    language: 'zh-CN',
+
+    // URL
+    url: 'https://www.iszy.cc',
+
+    // Directory
+    source_dir: 'source',
+    public_dir: 'public',
+  }),
 })
