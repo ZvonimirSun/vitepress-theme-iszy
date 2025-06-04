@@ -5,7 +5,7 @@ node_modules
 .vitepress/cache
 .vitepress/dist
 
-source/_posts
+source/_posts/**/*.md
 
 public
 dist
