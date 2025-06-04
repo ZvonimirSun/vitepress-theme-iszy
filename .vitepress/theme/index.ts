@@ -1,3 +1,3 @@
-import BlogTheme from 'vitepress-theme-iszy'
+import BlogTheme from '@zvonimirsun/vitepress-theme'
 
 export default BlogTheme

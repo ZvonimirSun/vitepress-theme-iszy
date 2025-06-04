@@ -14,9 +14,8 @@ export default defineConfig({
 
     // URL
     url: 'https://www.iszy.cc',
-
-    // Directory
-    source_dir: 'source',
-    public_dir: 'public',
   }),
+  markdown: {
+    languages: ['js', 'ts', 'vue'],
+  },
 })

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
+import BlogList from './BlogList.vue'
 
 const { Layout } = DefaultTheme
 </script>
@@ -75,6 +76,9 @@ const { Layout } = DefaultTheme
     <!-- home -->
     <template #home-hero-before>
       <slot name="home-hero-before" />
+      <div class="home">
+        <BlogList />
+      </div>
     </template>
     <template #home-hero-info-before>
       <slot name="home-hero-info-before" />
