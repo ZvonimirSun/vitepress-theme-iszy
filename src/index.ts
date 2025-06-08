@@ -1,10 +1,5 @@
-import type { Theme } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
-// https://vitepress.dev/guide/custom-theme
-import Layout from './components/Layout.vue'
-import './styles/index.scss'
+import './styles/fonts.css'
 
-export default {
-  extends: DefaultTheme,
-  Layout,
-} satisfies Theme
+export * from './without-fonts'
+
+export { default } from './without-fonts'
