@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { Content, useData } from 'vitepress'
+import Footer from './footer/index.vue'
 import Header from './header/index.vue'
+import PostList from './PostList.vue'
 
 const { frontmatter } = useData()
 </script>
@@ -12,10 +14,15 @@ const { frontmatter } = useData()
       <header class="header">
         <Header />
       </header>
-      <Sidebar />
+    </div>
+    <div class="main-inner">
+      <PostList v-if="frontmatter.layout === 'home'" />
+      <Content v-else />
     </div>
   </main>
-  <footer />
+  <footer>
+    <Footer />
+  </footer>
 </template>
 
 <style lang="scss" scoped>
