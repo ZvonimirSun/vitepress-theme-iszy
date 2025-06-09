@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      tinyglobby:
+        specifier: ^0.2.14
+        version: 0.2.14
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^4.13.2

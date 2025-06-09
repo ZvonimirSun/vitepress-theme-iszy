@@ -14,6 +14,10 @@ export default defineConfig({
 
     // URL
     url: 'https://www.iszy.cc',
+
+    footer: {
+      since: 2017,
+    },
   }),
   markdown: {
     languages: ['js', 'ts', 'vue'],
