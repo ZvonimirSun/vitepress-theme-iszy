@@ -1,5 +1,5 @@
+import type { BlogConfig } from '@zvonimirsun/vitepress-theme/types'
 import type { UserConfig } from 'vitepress'
-import type { BlogConfig } from './types/blog'
 import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 

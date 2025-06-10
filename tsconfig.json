@@ -1,15 +1,24 @@
 {
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ],
   "compilerOptions": {
-    "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "target": "esnext",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@zvonimirsun/vitepress-theme/types": ["./types/index.ts"],
+      "@zvonimirsun/vitepress-theme/node": ["./node/node.js"],
+      "@zvonimirsun/vitepress-theme": ["src/index.ts"]
+    },
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true
   },
-  "files": []
+  "include": ["env.d.ts","src", "types", ".vitepress/*.ts", ".vitepress/config.mts", "config.iszy.ts"],
+  "exclude": ["node_modules", "dist", "node/node.d.ts"]
 }
