@@ -1,5 +1,5 @@
+import { getThemeConfig } from '@zvonimirsun/vitepress-theme/node'
 import { defineConfig } from 'vitepress'
-import { getThemeConfig } from '../src/node'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
