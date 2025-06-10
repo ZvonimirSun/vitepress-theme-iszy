@@ -47,6 +47,13 @@ export function getThemeConfig(cfg: BlogConfig) {
       plugins: [
         UnoCSS(),
       ],
+      css: {
+        preprocessorOptions: {
+          scss: {
+            api: 'modern-compiler',
+          },
+        },
+      },
     },
 
     metaChunk: true,
