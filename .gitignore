@@ -1,12 +1,3 @@
 .idea
 node_modules
 .vscode
-
-.vitepress/cache
-.vitepress/dist
-
-source/_posts/**/*.md
-
-node
-public
-dist

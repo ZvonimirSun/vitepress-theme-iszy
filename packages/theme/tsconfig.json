@@ -19,6 +19,6 @@
     "noUnusedLocals": true,
     "skipLibCheck": true
   },
-  "include": ["env.d.ts","src", "types", ".vitepress/*.ts", ".vitepress/config.mts", "config.iszy.ts"],
+  "include": ["src", "types", "config.iszy.ts"],
   "exclude": ["node_modules", "dist", "node/node.d.ts"]
 }

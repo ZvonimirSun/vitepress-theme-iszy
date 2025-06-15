@@ -1,0 +1,4 @@
+source/_posts/**/*.md
+
+.vitepress/cache
+.vitepress/dist
