@@ -1,6 +1,9 @@
-.idea
 node_modules
 .vscode
 
 .vitepress/cache
 .vitepress/dist
+
+node
+public
+dist
