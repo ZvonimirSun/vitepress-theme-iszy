@@ -1,11 +1,13 @@
 {
   "name": "zvonimirsun-vitepress-theme-mono",
   "type": "module",
+  "version": "0.0.1",
   "private": true,
   "author": "ZvonimirSun",
   "license": "MIT",
   "scripts": {
     "dev": "pnpm --filter test-blog dev",
+    "build": "pnpm --filter @zvonimirsun/vitepress-theme build",
     "lint": "eslint . --fix"
   },
   "devDependencies": {
