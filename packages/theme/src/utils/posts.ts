@@ -4,22 +4,10 @@ import { resolve } from 'node:path'
 import { cwd } from 'node:process'
 import matter from 'gray-matter'
 import { glob } from 'tinyglobby'
+import { withCache } from './common'
 import { getThemeConfig } from './theme'
 
-let _posts: PostInfo[] | undefined
-let _postsPromise: Promise<PostInfo[]> | undefined
-
-export async function getPosts() {
-  if (_posts) {
-    return _posts
-  }
-  if (_postsPromise) {
-    return _postsPromise
-  }
-  _postsPromise = _getPosts()
-  _postsPromise.finally(() => _postsPromise = undefined)
-  return _postsPromise
-}
+export const getPosts = withCache(_getPosts)
 
 async function _getPosts(): Promise<PostInfo[]> {
   const themeConfig = await getThemeConfig()
@@ -52,6 +40,5 @@ async function _getPosts(): Promise<PostInfo[]> {
       frontmatter,
     })
   }
-  _posts = posts
-  return _posts
+  return posts
 }

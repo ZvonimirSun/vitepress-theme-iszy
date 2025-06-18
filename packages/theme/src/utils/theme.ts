@@ -3,6 +3,7 @@ import { cwd } from 'node:process'
 import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
+import { withCache } from './common'
 
 /**
  * 获取主题的配置
@@ -75,23 +76,9 @@ export function generateThemeConfig(cfg: BlogConfig) {
   return extraVPConfig
 }
 
-let _themeConfig: ThemeConfig | undefined
-let _themeConfigPromise: Promise<ThemeConfig> | undefined
-
-export async function getThemeConfig(): Promise<ThemeConfig> {
-  if (_themeConfig) {
-    return _themeConfig
-  }
-  if (_themeConfigPromise) {
-    return _themeConfigPromise
-  }
-  _themeConfigPromise = _getThemeConfig()
-  _themeConfigPromise.finally(() => _themeConfigPromise = undefined)
-  return _themeConfigPromise
-}
+export const getThemeConfig = withCache(_getThemeConfig)
 
 async function _getThemeConfig(): Promise<ThemeConfig> {
   const [userConfig] = (await resolveUserConfig(cwd(), 'build', 'production'))
-  _themeConfig = userConfig.themeConfig as ThemeConfig
-  return _themeConfig
+  return userConfig.themeConfig
 }
