@@ -7,4 +7,6 @@ const theme: Theme = {
   Layout,
 }
 
+export type * from '@zvonimirsun/vitepress-theme/types'
+
 export default theme
