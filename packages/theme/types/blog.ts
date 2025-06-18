@@ -26,3 +26,17 @@ export interface BlogConfig {
 
   [key: string]: any
 }
+
+export interface ThemeConfig extends BlogConfig {
+  language: string
+
+  source_dir: string
+  public_dir: string
+  tag_dir: string
+  archive_dir: string
+  category_dir: string
+
+  default_layout: string
+
+  per_page: number
+}

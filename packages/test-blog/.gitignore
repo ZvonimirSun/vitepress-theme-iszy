@@ -1,3 +1,5 @@
+dist
+
 source/_posts/**/*.md
 
 .vitepress/cache

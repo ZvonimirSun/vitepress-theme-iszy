@@ -14,6 +14,6 @@
     "noUnusedLocals": true,
     "skipLibCheck": true
   },
-  "include": [".vitepress/config.ts"],
+  "include": [".vitepress/**/*.ts", "**/*.ts"],
   "exclude": ["node_modules"]
 }

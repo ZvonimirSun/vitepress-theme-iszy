@@ -1,9 +1,9 @@
-import { getThemeConfig } from '@zvonimirsun/vitepress-theme/node'
+import { generateThemeConfig } from '@zvonimirsun/vitepress-theme/node'
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  extends: getThemeConfig({
+  extends: generateThemeConfig({
     // Site
     title: '随遇而安',
     subtitle: '在自由的空气中漂浮',

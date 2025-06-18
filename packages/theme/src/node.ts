@@ -1,13 +1,15 @@
-import type { BlogConfig } from '../types'
+import type { BlogConfig, ThemeConfig } from '@zvonimirsun/vitepress-theme/types'
 import type { UserConfig } from 'vitepress'
+import { cwd } from 'node:process'
 import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
+import { resolveUserConfig } from 'vitepress'
 
 /**
  * 获取主题的配置
  */
-export function getThemeConfig(cfg: BlogConfig) {
-  const themeConfig: BlogConfig = {
+export function generateThemeConfig(cfg: BlogConfig) {
+  const themeConfig: ThemeConfig = {
     language: 'zh-CN',
 
     // Directory
@@ -72,4 +74,9 @@ export function getThemeConfig(cfg: BlogConfig) {
   }
 
   return extraVPConfig
+}
+
+export async function getThemeConfig(): Promise<ThemeConfig> {
+  const [userConfig] = (await resolveUserConfig(cwd(), 'build', 'production'))
+  return userConfig.themeConfig
 }

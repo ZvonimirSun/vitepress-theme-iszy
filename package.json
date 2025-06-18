@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "pnpm --filter test-blog dev",
-    "build": "pnpm --filter @zvonimirsun/vitepress-theme build",
+    "build": "pnpm --filter test-blog build",
+    "preview": "pnpm --filter test-blog preview",
+    "build:theme": "pnpm --filter @zvonimirsun/vitepress-theme build",
     "lint": "eslint . --fix"
   },
   "devDependencies": {
