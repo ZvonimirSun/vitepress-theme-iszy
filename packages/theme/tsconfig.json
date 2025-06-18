@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@zvonimirsun/vitepress-theme/types": ["./types/index.ts"],
+      "@zvonimirsun/vitepress-theme/types": ["./types/index.d.ts"],
       "@zvonimirsun/vitepress-theme/node": ["./node/node.js"],
       "@zvonimirsun/vitepress-theme": ["src/index.ts"]
     },

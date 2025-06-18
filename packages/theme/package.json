@@ -11,7 +11,7 @@
       "require": "./node/node.cjs",
       "default": "./node/node.js"
     },
-    "./types": "./types/index.ts",
+    "./types": "./types/index.d.ts",
     "./package.json": "./package.json",
     ".": "./src/index.ts"
   },
@@ -21,6 +21,7 @@
     "src"
   ],
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "tinyglobby": "^0.2.14",
     "unocss": "^66.1.3",
     "vitepress": "^2.0.0-alpha.5",

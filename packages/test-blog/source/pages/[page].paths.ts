@@ -1,18 +1,3 @@
-import { getThemeConfig } from '@zvonimirsun/vitepress-theme/node'
-import { defineRoutes } from 'vitepress'
+import { indexPaths } from '@zvonimirsun/vitepress-theme/node'
 
-export default defineRoutes({
-  async paths(watchedFiles: string[]) {
-    const themeConfig = await getThemeConfig()
-
-    const count = watchedFiles.length
-    const pageSize = themeConfig.per_page
-    const pageCount = Math.ceil(count / pageSize)
-    return Array.from({ length: pageCount - 1 }).map((_, i) => ({
-      params: {
-        page: (i + 2).toString(),
-      },
-    }))
-  },
-  watch: ['source/_posts/**/*.md'],
-})
+export default indexPaths()

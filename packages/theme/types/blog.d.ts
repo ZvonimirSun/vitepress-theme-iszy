@@ -40,3 +40,13 @@ export interface ThemeConfig extends BlogConfig {
 
   per_page: number
 }
+
+export interface PostInfo {
+  url: string
+  title: string
+  tags: string[]
+  categories: string[]
+  date: Date
+  updated: Date
+  frontmatter: any
+}
