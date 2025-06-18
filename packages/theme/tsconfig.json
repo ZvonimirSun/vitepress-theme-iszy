@@ -1,24 +1,11 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": ["ESNext", "DOM"],
-    "jsx": "preserve",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@zvonimirsun/vitepress-theme/types": ["./types/index.d.ts"],
-      "@zvonimirsun/vitepress-theme/node": ["./node/node.js"],
-      "@zvonimirsun/vitepress-theme": ["src/index.ts"]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
     },
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true
-  },
-  "include": ["src", "types", "config.iszy.ts"],
-  "exclude": ["node_modules", "dist", "node/node.d.ts"]
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
 }

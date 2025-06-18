@@ -9,11 +9,6 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "@zvonimirsun/vitepress-theme": "workspace:*",
-    "vitepress": "^2.0.0-alpha.5"
-  },
-  "devDependencies": {
-    "sass-embedded": "^1.89.1",
-    "vite": "^6.3.5"
+    "@zvonimirsun/vitepress-theme": "workspace:*"
   }
 }
