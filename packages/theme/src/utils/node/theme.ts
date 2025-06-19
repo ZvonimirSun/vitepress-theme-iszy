@@ -68,10 +68,12 @@ export function generateThemeConfig(cfg: BlogConfig) {
       '_posts/:name.md': 'posts/:name/index.md',
       'index/1.md': 'index.md',
       'index/:page.md': 'page/:page/index.md',
-      'tags/:tag/1.md': 'tags/:tag/index.md',
-      'tags/:tag/:page.md': 'tags/:tag/page/:page/index.md',
-      'categories/:category/1.md': 'categories/:category/index.md',
-      'categories/:category/:page.md': 'categories/:category/page/:page/index.md',
+      'tags/index.md': `${themeConfig.tag_dir}/index.md`,
+      'tags/:tag/1.md': `${themeConfig.tag_dir}/:tag/index.md`,
+      'tags/:tag/:page.md': `${themeConfig.tag_dir}/:tag/page/:page/index.md`,
+      'categories/index.md': `${themeConfig.category_dir}/index.md`,
+      'categories/:category/1.md': `${themeConfig.category_dir}/:category/index.md`,
+      'categories/:category/:page.md': `${themeConfig.category_dir}/:category/page/:page/index.md`,
     },
     async transformPageData(pageData) {
       const themeConfig = await getThemeConfig()

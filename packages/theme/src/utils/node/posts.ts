@@ -96,7 +96,7 @@ async function _getPosts(): Promise<PostInfo[]> {
           info: {
             name: lowerCaseTag,
             alias: tag,
-            url: `/tags/${lowerCaseTag}/`,
+            url: `/${themeConfig.tag_dir}/${lowerCaseTag}/`,
             weight: 0,
           },
           posts: [],
@@ -113,7 +113,7 @@ async function _getPosts(): Promise<PostInfo[]> {
           info: {
             name: lowerCaseCategory,
             alias: category,
-            url: `/categories/${lowerCaseCategory}/`,
+            url: `/${themeConfig.category_dir}/${lowerCaseCategory}/`,
           },
           posts: [],
         }

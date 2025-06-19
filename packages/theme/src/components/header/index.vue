@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useData } from '../../composables/data'
 import { VPLink } from '../VP'
+
+const { theme } = useData()
 </script>
 
 <template>
@@ -7,10 +10,10 @@ import { VPLink } from '../VP'
     <VPLink href="/">
       首页
     </VPLink>
-    <VPLink href="/tags/">
+    <VPLink :href="`/${theme.tag_dir}/`">
       标签
     </VPLink>
-    <VPLink href="/categories/">
+    <VPLink :href="`/${theme.category_dir}/`">
       分类
     </VPLink>
   </header>

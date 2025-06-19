@@ -3,17 +3,17 @@ import { computed } from 'vue'
 import { VPLink } from '../components/VP'
 import { useData } from '../composables/data'
 
-const { page } = useData()
+const { page, theme } = useData()
 
 const pageIndex = computed(() => {
   return page.value.postList.pageIndex
 })
 const basePath = computed(() => {
   if (page.value.categoryInfo) {
-    return `/categories/${page.value.categoryInfo.name}`
+    return `/${theme.value.category_dir}/${page.value.categoryInfo.name}`
   }
   if (page.value.tagInfo) {
-    return `/tags/${page.value.tagInfo.name}`
+    return `/${theme.value.tag_dir}/${page.value.tagInfo.name}`
   }
   return ''
 })
