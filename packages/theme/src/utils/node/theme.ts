@@ -4,6 +4,9 @@ import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
 import { withCache } from './common'
+import { getPosts } from './posts'
+
+export const getThemeConfig = withCache(_getThemeConfig)
 
 /**
  * 获取主题的配置
@@ -65,6 +68,22 @@ export function generateThemeConfig(cfg: BlogConfig) {
       '_posts/:name.md': 'posts/:name/index.md',
       'pages/:page.md': 'pages/:page/index.md',
     },
+    async transformPageData(pageData) {
+      if (pageData.filePath === 'index.md' || pageData.filePath === 'pages/[page].md') {
+        const themeConfig = await getThemeConfig()
+        const posts = await getPosts()
+
+        const count = posts.length
+        const pageSize = themeConfig.per_page
+        const pageCount = Math.ceil(count / pageSize)
+
+        Object.assign(pageData.frontmatter, {
+          pageCount,
+          pageSize,
+          pageIndex: pageData.params?.page ? Number(pageData.params.page) : 1,
+        })
+      }
+    },
   }
 
   const url = new URL(cfg.url)
@@ -75,8 +94,6 @@ export function generateThemeConfig(cfg: BlogConfig) {
 
   return extraVPConfig
 }
-
-export const getThemeConfig = withCache(_getThemeConfig)
 
 async function _getThemeConfig(): Promise<ThemeConfig> {
   const [userConfig] = (await resolveUserConfig(cwd(), 'build', 'production'))
