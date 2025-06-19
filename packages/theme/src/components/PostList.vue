@@ -1,36 +1,43 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vitepress'
+import { computed } from 'vue'
+import { VPLink } from '../components/VP'
 import { useData } from '../composables/data'
-import { data as posts } from '../data/posts.data'
 
-const route = useRoute()
-const router = useRouter()
-const data = useData()
+const { page } = useData()
 
-const path = route.path
-const tmp = path.split('/')
+const pageIndex = computed(() => {
+  return page.value.postList.pageIndex
+})
 
-let currentPosts = []
+const pageCount = page.value.postList.pageCount
 
-if (tmp[tmp.length - 1] !== '') {
-  router.go(path.replace('.html', '/'))
-}
-else {
-  const pageIndex = Number(tmp[tmp.length - 2] || 1)
-  const pageSize = data.theme.value.per_page || 10
+const lastPage = computed(() => {
+  return pageIndex.value === 2 ? '/' : `/pages/${pageIndex.value - 1}/`
+})
 
-  currentPosts = posts.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
-}
+const nextPage = computed(() => {
+  return `/pages/${pageIndex.value + 1}/`
+})
 </script>
 
 <template>
   <h1>All Blog Posts</h1>
   <ul>
-    <li v-for="(post, index) of currentPosts" :key="index">
-      <a :href="post.url">{{ post.frontmatter.title }}</a>
-      <span>by {{ post.frontmatter.author }}</span>
+    <li v-for="(post, index) of page.postList.posts" :key="index">
+      <VPLink :href="post.url">
+        {{ post.title }}
+      </VPLink>
     </li>
   </ul>
+  <div>
+    当前第 {{ pageIndex }} 页，共{{ pageCount }}页
+  </div>
+  <VPLink v-if="pageIndex !== 1" :href="lastPage">
+    上一页
+  </VPLink>
+  <VPLink v-if="pageIndex !== pageCount" :href="nextPage">
+    下一页
+  </VPLink>
 </template>
 
 <style scoped lang="scss"></style>
