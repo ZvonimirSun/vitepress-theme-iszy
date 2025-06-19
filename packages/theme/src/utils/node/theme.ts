@@ -4,7 +4,7 @@ import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
 import { withCache } from './common'
-import { getPosts } from './posts'
+import { getPostListByPage } from './posts'
 
 export const getThemeConfig = withCache(_getThemeConfig)
 
@@ -71,17 +71,13 @@ export function generateThemeConfig(cfg: BlogConfig) {
     async transformPageData(pageData) {
       if (pageData.filePath === 'index.md' || pageData.filePath === 'pages/[page].md') {
         const themeConfig = await getThemeConfig()
-        const posts = await getPosts()
 
-        const count = posts.length
+        const pageIndex = pageData.params?.page ? Number(pageData.params.page) : 1
         const pageSize = themeConfig.per_page
-        const pageCount = Math.ceil(count / pageSize)
 
-        Object.assign(pageData.frontmatter, {
-          pageCount,
-          pageSize,
-          pageIndex: pageData.params?.page ? Number(pageData.params.page) : 1,
-        })
+        return {
+          postList: await getPostListByPage(pageIndex, pageSize),
+        }
       }
     },
   }

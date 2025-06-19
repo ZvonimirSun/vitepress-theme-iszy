@@ -1,5 +1,5 @@
 import type { UserConfig as UserConfig$ } from 'vitepress'
-import type { ThemeConfig } from './blog'
+import type { PostList, ThemeConfig } from './blog'
 
 export interface UserConfig extends UserConfig$ {
   themeConfig: ThemeConfig
@@ -8,4 +8,10 @@ export interface UserConfig extends UserConfig$ {
   srcDir: string
   assetsDir: string
   outDir: string
+}
+
+declare module 'vitepress' {
+  interface PageData {
+    postList: PostList
+  }
 }

@@ -1,4 +1,4 @@
-import type { PostInfo } from '@zvonimirsun/vitepress-theme/types'
+import type { PostInfo, PostList } from '@zvonimirsun/vitepress-theme/types'
 import { readFileSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { cwd } from 'node:process'
@@ -40,5 +40,32 @@ async function _getPosts(): Promise<PostInfo[]> {
       frontmatter,
     })
   }
+  posts.sort((a, b) => {
+    return a.date > b.date ? -1 : 1
+  })
   return posts
+}
+
+export async function getPostListByPage(pageIndex: number, pageSize: number, {
+  tag,
+  category,
+}: {
+  tag?: string
+  category?: string
+} = {}): Promise<PostList> {
+  let posts = await getPosts()
+  const pageCount = Math.ceil(posts.length / pageSize)
+  if (tag) {
+    posts = posts.filter(post => post.tags.includes(tag))
+  }
+  if (category) {
+    posts = posts.filter(post => post.categories.includes(category))
+  }
+  posts = posts.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
+  return {
+    pageCount,
+    pageIndex,
+    pageSize,
+    posts,
+  }
 }

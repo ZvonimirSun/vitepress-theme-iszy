@@ -50,3 +50,10 @@ export interface PostInfo {
   updated: Date
   frontmatter: any
 }
+
+export interface PostList {
+  pageCount: number
+  pageSize: number
+  pageIndex: number
+  posts: PostInfo[]
+}
