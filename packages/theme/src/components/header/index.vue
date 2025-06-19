@@ -16,6 +16,9 @@ const { theme } = useData()
     <VPLink :href="`/${theme.category_dir}/`">
       分类
     </VPLink>
+    <VPLink href="/archives/">
+      归档
+    </VPLink>
   </header>
 </template>
 

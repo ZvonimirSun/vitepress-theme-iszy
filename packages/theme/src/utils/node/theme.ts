@@ -66,14 +66,24 @@ export function generateThemeConfig(cfg: BlogConfig) {
     rewrites: {
       // 文章目录
       '_posts/:name.md': 'posts/:name/index.md',
+
+      // 文章索引
       'index/1.md': 'index.md',
       'index/:page.md': 'page/:page/index.md',
+
+      // 标签页
       'tags/index.md': `${themeConfig.tag_dir}/index.md`,
       'tags/:tag/1.md': `${themeConfig.tag_dir}/:tag/index.md`,
       'tags/:tag/:page.md': `${themeConfig.tag_dir}/:tag/page/:page/index.md`,
+
+      // 分类页
       'categories/index.md': `${themeConfig.category_dir}/index.md`,
       'categories/:category/1.md': `${themeConfig.category_dir}/:category/index.md`,
       'categories/:category/:page.md': `${themeConfig.category_dir}/:category/page/:page/index.md`,
+
+      // 归档页
+      'archives/1.md': 'archives/index.md',
+      'archives/:page.md': 'archives/page/:page/index.md',
     },
     async transformPageData(pageData) {
       const themeConfig = await getThemeConfig()
@@ -81,7 +91,7 @@ export function generateThemeConfig(cfg: BlogConfig) {
       const pageSize = themeConfig.per_page
 
       // 文章索引页面
-      if (pageData.filePath.startsWith('index/')) {
+      if (pageData.filePath.startsWith('index/') || pageData.filePath.startsWith('archives/')) {
         return {
           postList: await getPostListByPage(pageIndex, pageSize),
         }

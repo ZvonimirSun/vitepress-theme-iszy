@@ -5,6 +5,7 @@ import Footer from './footer/index.vue'
 import Header from './header/index.vue'
 import PostList from './PostList.vue'
 import TagList from './TagList.vue'
+import Timeline from './Timeline.vue'
 
 const { frontmatter, page } = useData()
 </script>
@@ -19,9 +20,10 @@ const { frontmatter, page } = useData()
     </div>
     <div class="main-inner">
       <PostList v-if="frontmatter.layout === 'home'" />
-      <PostList v-else-if="frontmatter.layout === 'tags' && page.tagInfo" />
+      <Timeline v-if="frontmatter.layout === 'archives'" />
+      <Timeline v-else-if="frontmatter.layout === 'tags' && page.tagInfo" />
       <TagList v-else-if="frontmatter.layout === 'tags'" />
-      <PostList v-else-if="frontmatter.layout === 'categories' && page.categoryInfo" />
+      <Timeline v-else-if="frontmatter.layout === 'categories' && page.categoryInfo" />
       <CategoryList v-else-if="frontmatter.layout === 'categories'" />
       <Content v-else />
     </div>
