@@ -7,9 +7,9 @@
   "author": "ZvonimirSun",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r --parallel run dev",
+    "dev": "pnpm -r --parallel dev",
     "build": "pnpm --filter @zvonimirsun/vitepress-theme build",
-    "test:build": "pnpm --filter test-blog build",
+    "test:build": "pnpm -r build",
     "test:preview": "pnpm --filter test-blog preview",
     "lint": "eslint . --fix"
   },
