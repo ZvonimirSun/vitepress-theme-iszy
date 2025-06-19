@@ -17,20 +17,6 @@ export function pagePaths() {
   })
 }
 
-export function tagsPaths() {
-  return defineRoutes({
-    async paths() {
-      const tags = await getAllTags()
-      return tags.map(tag => ({
-        params: {
-          tag: tag.name.toLowerCase(),
-          page: '1',
-        },
-      }))
-    },
-  })
-}
-
 export function tagsPagePaths() {
   return defineRoutes({
     async paths() {
@@ -41,10 +27,11 @@ export function tagsPagePaths() {
         const postsList = await getPostListByPage(1, themeConfig.per_page, {
           tag: tag.name,
         })
-        route.push(...Array.from({ length: postsList.pageCount - 1 }).map((_, i) => ({
+        route.push(...Array.from({ length: postsList.pageCount }).map((_, i) => ({
           params: {
+            tagName: tag.name,
             tag: tag.name.toLowerCase(),
-            page: (i + 2).toString(),
+            page: (i + 1).toString(),
           },
         })))
       }

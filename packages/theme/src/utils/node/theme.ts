@@ -66,10 +66,13 @@ export function generateThemeConfig(cfg: BlogConfig) {
     rewrites: {
       // 文章目录
       '_posts/:name.md': 'posts/:name/index.md',
+      'page/:page.md': 'page/:page/index.md',
+      'tags/:tag/1.md': 'tags/:tag/index.md',
+      'tags/:tag/:page.md': 'tags/:tag/page/:page/index.md',
     },
     async transformPageData(pageData) {
       // 文章索引页面
-      if (pageData.filePath === 'index.md' || pageData.filePath === 'page/[page]/index.md') {
+      if (pageData.filePath === 'index.md' || pageData.filePath.startsWith('page/')) {
         const themeConfig = await getThemeConfig()
 
         const pageIndex = pageData.params?.page ? Number(pageData.params.page) : 1
