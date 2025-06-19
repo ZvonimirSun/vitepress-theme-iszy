@@ -7,10 +7,10 @@
   "author": "ZvonimirSun",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm --filter test-blog dev",
-    "build": "pnpm --filter test-blog build",
-    "preview": "pnpm --filter test-blog preview",
-    "build:theme": "pnpm --filter @zvonimirsun/vitepress-theme build",
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm --filter @zvonimirsun/vitepress-theme build",
+    "test:build": "pnpm --filter test-blog build",
+    "test:preview": "pnpm --filter test-blog preview",
     "lint": "eslint . --fix"
   },
   "dependencies": {

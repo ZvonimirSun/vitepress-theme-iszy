@@ -18,6 +18,7 @@
     "src"
   ],
   "scripts": {
+    "dev": "tsup --tsconfig tsconfig.node.json --watch",
     "build": "tsup --tsconfig tsconfig.node.json"
   },
   "dependencies": {
