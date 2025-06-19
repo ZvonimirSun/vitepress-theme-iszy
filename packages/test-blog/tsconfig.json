@@ -1,19 +1,5 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": ["ESNext", "DOM"],
-    "jsx": "preserve",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "baseUrl": ".",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true
-  },
+  "extends": "../../tsconfig.json",
   "include": [".vitepress/**/*.ts", "**/*.ts"],
   "exclude": ["node_modules"]
 }
