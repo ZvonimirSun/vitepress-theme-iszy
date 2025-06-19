@@ -57,3 +57,9 @@ export interface PostList {
   pageIndex: number
   posts: PostInfo[]
 }
+
+export interface TagInfo {
+  name: string
+  url: string
+  weight: number
+}

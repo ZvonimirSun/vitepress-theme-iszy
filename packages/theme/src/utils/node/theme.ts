@@ -4,7 +4,7 @@ import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
 import { withCache } from './common'
-import { getPostListByPage } from './posts'
+import { getAllTags, getPostListByPage } from './posts'
 
 export const getThemeConfig = withCache(_getThemeConfig)
 
@@ -66,10 +66,10 @@ export function generateThemeConfig(cfg: BlogConfig) {
     rewrites: {
       // 文章目录
       '_posts/:name.md': 'posts/:name/index.md',
-      'pages/:page.md': 'pages/:page/index.md',
     },
     async transformPageData(pageData) {
-      if (pageData.filePath === 'index.md' || pageData.filePath === 'pages/[page].md') {
+      // 文章索引页面
+      if (pageData.filePath === 'index.md' || pageData.filePath === 'page/[page]/index.md') {
         const themeConfig = await getThemeConfig()
 
         const pageIndex = pageData.params?.page ? Number(pageData.params.page) : 1
@@ -77,6 +77,26 @@ export function generateThemeConfig(cfg: BlogConfig) {
 
         return {
           postList: await getPostListByPage(pageIndex, pageSize),
+        }
+      }
+      // 标签云
+      if (pageData.filePath === 'tags/index.md') {
+        return {
+          tagList: await getAllTags(),
+        }
+      }
+      if (pageData.filePath.startsWith('tags/[tag]/')) {
+        const themeConfig = await getThemeConfig()
+        const pageIndex = pageData.params!.page ? Number(pageData.params!.page) : 1
+
+        const pageSize = themeConfig.per_page
+        const tag = pageData.params!.tag
+
+        return {
+          basePath: `/tags/${tag.toLowerCase()}`,
+          postList: await getPostListByPage(pageIndex, pageSize, {
+            tag,
+          }),
         }
       }
     },

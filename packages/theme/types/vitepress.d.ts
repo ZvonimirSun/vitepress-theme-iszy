@@ -13,5 +13,7 @@ export interface UserConfig extends UserConfig$ {
 declare module 'vitepress' {
   interface PageData {
     postList: PostList
+    tagList: TagInfo[]
+    basePath?: string
   }
 }

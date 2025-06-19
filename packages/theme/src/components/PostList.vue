@@ -8,15 +8,18 @@ const { page } = useData()
 const pageIndex = computed(() => {
   return page.value.postList.pageIndex
 })
+const basePath = computed(() => {
+  return page.value.basePath ?? ''
+})
 
 const pageCount = page.value.postList.pageCount
 
 const lastPage = computed(() => {
-  return pageIndex.value === 2 ? '/' : `/pages/${pageIndex.value - 1}/`
+  return pageIndex.value === 2 ? `${basePath.value}/` : `${basePath.value}/page/${pageIndex.value - 1}/`
 })
 
 const nextPage = computed(() => {
-  return `/pages/${pageIndex.value + 1}/`
+  return `${basePath.value}/page/${pageIndex.value + 1}/`
 })
 </script>
 

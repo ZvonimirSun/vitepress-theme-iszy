@@ -3,8 +3,9 @@ import { Content, useData } from 'vitepress'
 import Footer from './footer/index.vue'
 import Header from './header/index.vue'
 import PostList from './PostList.vue'
+import TagList from './TagList.vue'
 
-const { frontmatter } = useData()
+const { frontmatter, page } = useData()
 </script>
 
 <template>
@@ -17,6 +18,8 @@ const { frontmatter } = useData()
     </div>
     <div class="main-inner">
       <PostList v-if="frontmatter.layout === 'home'" />
+      <PostList v-else-if="frontmatter.layout === 'tags' && page.postList" />
+      <TagList v-else-if="frontmatter.layout === 'tags'" />
       <Content v-else />
     </div>
   </main>
