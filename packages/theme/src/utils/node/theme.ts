@@ -66,7 +66,8 @@ export function generateThemeConfig(cfg: BlogConfig) {
     rewrites: {
       // 文章目录
       '_posts/:name.md': 'posts/:name/index.md',
-      'page/:page.md': 'page/:page/index.md',
+      'index/1.md': 'index.md',
+      'index/:page.md': 'page/:page/index.md',
       'tags/:tag/1.md': 'tags/:tag/index.md',
       'tags/:tag/:page.md': 'tags/:tag/page/:page/index.md',
       'categories/:category/1.md': 'categories/:category/index.md',
@@ -78,7 +79,7 @@ export function generateThemeConfig(cfg: BlogConfig) {
       const pageSize = themeConfig.per_page
 
       // 文章索引页面
-      if (pageData.filePath === 'index.md' || pageData.filePath.startsWith('page/')) {
+      if (pageData.filePath.startsWith('index/')) {
         return {
           postList: await getPostListByPage(pageIndex, pageSize),
         }
@@ -89,11 +90,7 @@ export function generateThemeConfig(cfg: BlogConfig) {
           tagList: await getAllTags(),
         }
       }
-      if (pageData.filePath.startsWith('tags/[tag]/')) {
-        const themeConfig = await getThemeConfig()
-        const pageIndex = pageData.params!.page ? Number(pageData.params!.page) : 1
-
-        const pageSize = themeConfig.per_page
+      if (pageData.filePath.startsWith('tags/')) {
         const tag = pageData.params!.tag
         const tagInfo = await getTagInfo(tag)
 
@@ -111,11 +108,7 @@ export function generateThemeConfig(cfg: BlogConfig) {
           categoryList: await getAllCategories(),
         }
       }
-      if (pageData.filePath.startsWith('categories/[category]/')) {
-        const themeConfig = await getThemeConfig()
-        const pageIndex = pageData.params!.page ? Number(pageData.params!.page) : 1
-
-        const pageSize = themeConfig.per_page
+      if (pageData.filePath.startsWith('categories/')) {
         const category = pageData.params!.category
         const categoryInfo = await getCategoryInfo(category)
 

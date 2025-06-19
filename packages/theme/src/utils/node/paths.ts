@@ -2,15 +2,15 @@ import { defineRoutes } from 'vitepress'
 import { getAllCategories, getAllTags, getPostListByPage } from './posts'
 import { getThemeConfig } from './theme'
 
-export function pagePaths() {
+export function indexPagePaths() {
   return defineRoutes({
     async paths() {
       const themeConfig = await getThemeConfig()
       const postsList = await getPostListByPage(1, themeConfig.per_page)
 
-      return Array.from({ length: postsList.pageCount - 1 }).map((_, i) => ({
+      return Array.from({ length: postsList.pageCount }).map((_, i) => ({
         params: {
-          page: (i + 2).toString(),
+          page: (i + 1).toString(),
         },
       }))
     },
