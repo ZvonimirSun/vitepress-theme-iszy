@@ -9,7 +9,13 @@ const pageIndex = computed(() => {
   return page.value.postList.pageIndex
 })
 const basePath = computed(() => {
-  return page.value.basePath ?? ''
+  if (page.value.categoryInfo) {
+    return `/categories/${page.value.categoryInfo.name}`
+  }
+  if (page.value.tagInfo) {
+    return `/tags/${page.value.tagInfo.name}`
+  }
+  return ''
 })
 
 const pageCount = page.value.postList.pageCount
@@ -21,10 +27,20 @@ const lastPage = computed(() => {
 const nextPage = computed(() => {
   return `${basePath.value}/page/${pageIndex.value + 1}/`
 })
+
+const title = computed(() => {
+  if (page.value.categoryInfo) {
+    return '分类'
+  }
+  if (page.value.tagInfo) {
+    return '标签'
+  }
+  return '首页'
+})
 </script>
 
 <template>
-  <h1>All Blog Posts</h1>
+  <h1>{{ title }}</h1>
   <ul>
     <li v-for="(post, index) of page.postList.posts" :key="index">
       <VPLink :href="post.url">

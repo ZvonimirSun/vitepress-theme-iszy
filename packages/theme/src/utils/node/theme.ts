@@ -4,7 +4,7 @@ import { URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
 import { withCache } from './common'
-import { getAllTags, getPostListByPage } from './posts'
+import { getAllCategories, getAllTags, getCategoryInfo, getPostListByPage, getTagInfo } from './posts'
 
 export const getThemeConfig = withCache(_getThemeConfig)
 
@@ -69,15 +69,16 @@ export function generateThemeConfig(cfg: BlogConfig) {
       'page/:page.md': 'page/:page/index.md',
       'tags/:tag/1.md': 'tags/:tag/index.md',
       'tags/:tag/:page.md': 'tags/:tag/page/:page/index.md',
+      'categories/:category/1.md': 'categories/:category/index.md',
+      'categories/:category/:page.md': 'categories/:category/page/:page/index.md',
     },
     async transformPageData(pageData) {
+      const themeConfig = await getThemeConfig()
+      const pageIndex = pageData.params?.page ? Number(pageData.params.page) : 1
+      const pageSize = themeConfig.per_page
+
       // 文章索引页面
       if (pageData.filePath === 'index.md' || pageData.filePath.startsWith('page/')) {
-        const themeConfig = await getThemeConfig()
-
-        const pageIndex = pageData.params?.page ? Number(pageData.params.page) : 1
-        const pageSize = themeConfig.per_page
-
         return {
           postList: await getPostListByPage(pageIndex, pageSize),
         }
@@ -94,11 +95,36 @@ export function generateThemeConfig(cfg: BlogConfig) {
 
         const pageSize = themeConfig.per_page
         const tag = pageData.params!.tag
+        const tagInfo = await getTagInfo(tag)
+
+        pageData.title = `标签: ${tagInfo.alias}`
 
         return {
-          basePath: `/tags/${tag.toLowerCase()}`,
+          tagInfo,
           postList: await getPostListByPage(pageIndex, pageSize, {
             tag,
+          }),
+        }
+      }
+      if (pageData.filePath === 'categories/index.md') {
+        return {
+          categoryList: await getAllCategories(),
+        }
+      }
+      if (pageData.filePath.startsWith('categories/[category]/')) {
+        const themeConfig = await getThemeConfig()
+        const pageIndex = pageData.params!.page ? Number(pageData.params!.page) : 1
+
+        const pageSize = themeConfig.per_page
+        const category = pageData.params!.category
+        const categoryInfo = await getCategoryInfo(category)
+
+        pageData.title = `分类: ${categoryInfo.alias}`
+
+        return {
+          categoryInfo,
+          postList: await getPostListByPage(pageIndex, pageSize, {
+            category,
           }),
         }
       }

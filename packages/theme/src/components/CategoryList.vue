@@ -6,11 +6,11 @@ const { page } = useData()
 </script>
 
 <template>
-  <h1>标签</h1>
+  <h1>分类</h1>
   <ul>
-    <li v-for="(tag) of page.tagList" :key="tag.name">
-      <VPLink :href="tag.url">
-        {{ tag.name }}
+    <li v-for="(category) of page.categoryList" :key="category.name">
+      <VPLink :href="category.url">
+        {{ category.name }}
       </VPLink>
     </li>
   </ul>

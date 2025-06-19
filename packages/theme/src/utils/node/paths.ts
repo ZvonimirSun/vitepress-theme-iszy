@@ -1,5 +1,5 @@
 import { defineRoutes } from 'vitepress'
-import { getAllTags, getPostListByPage } from './posts'
+import { getAllCategories, getAllTags, getPostListByPage } from './posts'
 import { getThemeConfig } from './theme'
 
 export function pagePaths() {
@@ -31,6 +31,29 @@ export function tagsPagePaths() {
           params: {
             tagName: tag.name,
             tag: tag.name.toLowerCase(),
+            page: (i + 1).toString(),
+          },
+        })))
+      }
+      return route
+    },
+  })
+}
+
+export function categoriesPagePaths() {
+  return defineRoutes({
+    async paths() {
+      const route = []
+      const themeConfig = await getThemeConfig()
+      const categories = await getAllCategories()
+      for (const category of categories) {
+        const postsList = await getPostListByPage(1, themeConfig.per_page, {
+          category: category.name,
+        })
+        route.push(...Array.from({ length: postsList.pageCount }).map((_, i) => ({
+          params: {
+            categoryName: category.name,
+            category: category.name.toLowerCase(),
             page: (i + 1).toString(),
           },
         })))

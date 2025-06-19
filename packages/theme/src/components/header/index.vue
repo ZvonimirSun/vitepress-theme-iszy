@@ -10,6 +10,9 @@ import { VPLink } from '../VP'
     <VPLink href="/tags/">
       标签
     </VPLink>
+    <VPLink href="/categories/">
+      分类
+    </VPLink>
   </header>
 </template>
 

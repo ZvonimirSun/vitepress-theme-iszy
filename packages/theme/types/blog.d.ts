@@ -60,6 +60,13 @@ export interface PostList {
 
 export interface TagInfo {
   name: string
+  alias: string
   url: string
   weight: number
+}
+
+export interface CategoryInfo {
+  name: string
+  alias: string
+  url: string
 }
