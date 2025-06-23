@@ -6,9 +6,9 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     "paths": {
-      "@zvonimirsun/vitepress-theme/types": ["./types/index.d.ts"],
-      "@zvonimirsun/vitepress-theme/node": ["./node/node.js"],
-      "@zvonimirsun/vitepress-theme": ["./src/index.ts"]
+      "vitepress-theme-iszy/types": ["./types/index.d.ts"],
+      "vitepress-theme-iszy/node": ["./node/node.js"],
+      "vitepress-theme-iszy": ["./src/index.ts"]
     }
   }
 }

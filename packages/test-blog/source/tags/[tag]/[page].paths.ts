@@ -1,3 +1,3 @@
-import { tagsPagePaths } from '@zvonimirsun/vitepress-theme/node'
+import { tagsPagePaths } from 'vitepress-theme-iszy/node'
 
 export default tagsPagePaths()

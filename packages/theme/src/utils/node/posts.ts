@@ -1,4 +1,4 @@
-import type { CategoryInfo, PostInfo, PostList, TagInfo } from '@zvonimirsun/vitepress-theme/types'
+import type { CategoryInfo, PostInfo, PostList, TagInfo } from 'vitepress-theme-iszy/types'
 import { readFileSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { cwd } from 'node:process'

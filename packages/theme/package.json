@@ -1,5 +1,5 @@
 {
-  "name": "@zvonimirsun/vitepress-theme",
+  "name": "vitepress-theme-iszy",
   "type": "module",
   "exports": {
     "./node": {

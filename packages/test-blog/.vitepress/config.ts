@@ -1,6 +1,6 @@
-import type { ThemeConfig } from '@zvonimirsun/vitepress-theme'
-import { generateThemeConfig } from '@zvonimirsun/vitepress-theme/node'
+import type { ThemeConfig } from 'vitepress-theme-iszy'
 import { defineConfig } from 'vitepress'
+import { generateThemeConfig } from 'vitepress-theme-iszy/node'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig<ThemeConfig>({

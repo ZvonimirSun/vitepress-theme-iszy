@@ -1,3 +1,3 @@
-import { categoriesPagePaths } from '@zvonimirsun/vitepress-theme/node'
+import { categoriesPagePaths } from 'vitepress-theme-iszy/node'
 
 export default categoriesPagePaths()

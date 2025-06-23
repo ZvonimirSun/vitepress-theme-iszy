@@ -4,4 +4,4 @@ export * from './without-fonts'
 
 export { default } from './without-fonts'
 
-export type * from '@zvonimirsun/vitepress-theme/types'
+export type * from 'vitepress-theme-iszy/types'

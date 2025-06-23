@@ -9,6 +9,6 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "@zvonimirsun/vitepress-theme": "workspace:*"
+    "vitepress-theme-iszy": "workspace:*"
   }
 }

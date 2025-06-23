@@ -1,3 +1,3 @@
-import { indexPagePaths } from '@zvonimirsun/vitepress-theme/node'
+import { indexPagePaths } from 'vitepress-theme-iszy/node'
 
 export default indexPagePaths()

@@ -45,7 +45,7 @@ importers:
 
   packages/test-blog:
     dependencies:
-      '@zvonimirsun/vitepress-theme':
+      'vitepress-theme-iszy':
         specifier: workspace:*
         version: link:../theme
 
