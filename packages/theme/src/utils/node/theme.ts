@@ -1,10 +1,13 @@
 import type { BlogConfig, ThemeConfig, UserConfig } from 'vitepress-theme-iszy/types'
 import { cwd } from 'node:process'
 import { URL } from 'node:url'
+import { merge } from 'lodash-es'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
+import { DEFAULT_THEME_CONFIG } from '../shared/Constants'
 import { withCache } from './common'
 import { getAllCategories, getAllTags, getCategoryInfo, getPostListByPage, getTagInfo } from './posts'
+import { ThemeStylePlugin } from './style'
 
 export const getThemeConfig = withCache(_getThemeConfig)
 
@@ -12,24 +15,7 @@ export const getThemeConfig = withCache(_getThemeConfig)
  * 获取主题的配置
  */
 export function generateThemeConfig(cfg: BlogConfig) {
-  const themeConfig: ThemeConfig = {
-    language: 'zh-CN',
-
-    // Directory
-    source_dir: './source',
-    public_dir: './public',
-    tag_dir: 'tags',
-    archive_dir: 'archives',
-    category_dir: 'categories',
-
-    // Writing
-    default_layout: 'post',
-
-    // Pagination
-    per_page: 10,
-
-    ...cfg,
-  }
+  const themeConfig = merge({}, DEFAULT_THEME_CONFIG, cfg) as ThemeConfig
 
   const extraVPConfig: UserConfig = {
     title: themeConfig.title,
@@ -51,14 +37,8 @@ export function generateThemeConfig(cfg: BlogConfig) {
     vite: {
       plugins: [
         UnoCSS(),
+        ThemeStylePlugin(themeConfig),
       ],
-      css: {
-        preprocessorOptions: {
-          scss: {
-            api: 'modern-compiler',
-          },
-        },
-      },
     },
 
     metaChunk: true,

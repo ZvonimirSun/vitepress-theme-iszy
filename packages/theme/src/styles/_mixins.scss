@@ -1,0 +1,294 @@
+@use './_shared/base' as *;
+
+@mixin mobile-smallest {
+  @media (max-width: 413px) {
+    @content;
+  }
+}
+
+@mixin mobile-small {
+  @media (max-width: 567px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet-mobile {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin tablet-desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin desktop-largest {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin sidebar {
+  @if $scheme == 'Muse' or $scheme == 'Mist' {
+    @content;
+  } @else {
+    @include tablet-mobile {
+      @content;
+    }
+  }
+}
+
+@function random-color($min, $max) {
+  @return floor(random() * ($max - $min + 1) + $min);
+}
+
+@mixin word-wrap {
+  overflow-wrap: break-word;
+}
+
+@mixin disable-user-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@mixin sidebar-inline-links-item {
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin post-card {
+  background: var(--card-bg-color);
+  border-left: 3px solid #{$red};
+  margin: $post-card-margin;
+}
+
+@mixin font-family-icons($icon: null) {
+  @if $icon != null {
+    content: $icon;
+  }
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+@mixin main-container {
+  margin: 0 auto;
+  width: $content-desktop;
+
+  @include mobile {
+    width: auto;
+  }
+
+  @include desktop-large {
+    width: $content-desktop-large;
+  }
+
+  @include desktop-largest {
+    width: $content-desktop-largest;
+  }
+}
+
+@mixin sidebar-toggle-position($reverse) {
+  $condition: ($sidebar-toggle-alignment == 'right') == $reverse;
+  $alignment: if($condition, 'left', 'right');
+
+  #{ $alignment }: $b2t-position-right;
+
+  @include tablet-mobile {
+    #{ $alignment }: $b2t-position-right-mobile;
+  }
+}
+
+@mixin sidebar-toggle {
+  background: #{$b2t-bg-color};
+  cursor: pointer;
+  opacity: $b2t-opacity;
+  position: fixed;
+  z-index: $zindex-3;
+  @include sidebar-toggle-position(false);
+
+  &:hover {
+    opacity: $b2t-opacity-hover;
+  }
+
+  @include tablet-mobile {
+    opacity: $b2t-opacity-hover;
+  }
+}
+
+@mixin round-icon($diameter) {
+  border-radius: 50%;
+  content: ' ';
+  height: $diameter;
+  width: $diameter;
+}
+
+@mixin toggle-arrow($position) {
+  @if $position == 'right' {
+    :first-child {
+      top: 2px;
+      transform: rotate(-45deg);
+      width: 50%;
+    }
+
+    :last-child {
+      top: -2px;
+      transform: rotate(45deg);
+      width: 50%;
+    }
+  } @else {
+    :first-child {
+      left: 50%;
+      top: 2px;
+      transform: rotate(45deg);
+      width: 50%;
+    }
+
+    :last-child {
+      left: 50%;
+      top: -2px;
+      transform: rotate(-45deg);
+      width: 50%;
+    }
+  }
+}
+
+@mixin toggle-close($position) {
+  :nth-child(2) {
+    opacity: 0;
+  }
+
+  @if $position == 'right' {
+    :first-child {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    :last-child {
+      top: -6px;
+      transform: rotate(45deg);
+    }
+  } @else {
+    :first-child {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    :last-child {
+      top: -6px;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+@mixin site-nav-hide-by-default {
+  --scroll-height: 0;
+  height: 0;
+  overflow: hidden;
+  transition: $transition-ease;
+  transition-property: height, visibility;
+  visibility: hidden;
+
+  body:not(.site-nav-on) & .animated {
+    animation: none;
+  }
+
+  body.site-nav-on & {
+    height: var(--scroll-height);
+    visibility: unset;
+  }
+}
+
+@mixin button($color) {
+  background: transparent;
+  color: $color;
+  cursor: pointer;
+  line-height: 2;
+  padding: 0 15px;
+
+  &:hover {
+    background: $color;
+    color: white;
+  }
+}
+
+@mixin gemini-block {
+  background: var(--content-bg-color);
+  border-radius: #{$border-radius-inner};
+  box-shadow: #{$box-shadow-inner};
+}
+
+@mixin gemini-block-not-first {
+  border-radius: #{$border-radius};
+  box-shadow: #{$box-shadow};
+  margin-top: #{$sidebar-offset};
+
+  @include tablet {
+    margin-top: #{$content-tablet-padding};
+  }
+
+  @include mobile {
+    margin-top: #{$content-mobile-padding};
+  }
+}
+
+@mixin menu-item-row {
+  display: flex;
+  align-items: center;
+
+  .badge {
+    margin-left: auto;
+  }
+}
+
+@mixin badge {
+  background: #{$badge-background};
+  border-radius: #{$badge-border-radius};
+  color: #{$badge-color};
+  font-weight: bold;
+  line-height: 1;
+  margin-left: .35em;
+  padding: $badge-padding;
+  text-shadow: #{$badge-text-shadow};
+}
