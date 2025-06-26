@@ -1,6 +1,7 @@
 import type { BlogConfig, ThemeConfig, UserConfig } from 'vitepress-theme-iszy/types'
 import { cwd } from 'node:process'
 import { URL } from 'node:url'
+import { merge } from 'lodash-es'
 import UnoCSS from 'unocss/vite'
 import { resolveUserConfig } from 'vitepress'
 import { withCache } from './common'
@@ -12,7 +13,7 @@ export const getThemeConfig = withCache(_getThemeConfig)
  * 获取主题的配置
  */
 export function generateThemeConfig(cfg: BlogConfig) {
-  const themeConfig: ThemeConfig = {
+  const themeConfig: ThemeConfig = merge({
     language: 'zh-CN',
 
     // Directory
@@ -28,8 +29,10 @@ export function generateThemeConfig(cfg: BlogConfig) {
     // Pagination
     per_page: 10,
 
-    ...cfg,
-  }
+    motion: {
+      enable: false,
+    },
+  }, cfg)
 
   const extraVPConfig: UserConfig = {
     title: themeConfig.title,
@@ -52,13 +55,6 @@ export function generateThemeConfig(cfg: BlogConfig) {
       plugins: [
         UnoCSS(),
       ],
-      css: {
-        preprocessorOptions: {
-          scss: {
-            api: 'modern-compiler',
-          },
-        },
-      },
     },
 
     metaChunk: true,

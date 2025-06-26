@@ -24,6 +24,10 @@ export interface BlogConfig {
   // Pagination
   per_page?: number
 
+  motion?: {
+    enable?: boolean
+  }
+
   [key: string]: any
 }
 
@@ -39,6 +43,10 @@ export interface ThemeConfig extends BlogConfig {
   default_layout: string
 
   per_page: number
+
+  motion: {
+    enable: boolean
+  }
 }
 
 export interface PostInfo {

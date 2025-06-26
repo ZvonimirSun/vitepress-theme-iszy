@@ -1,0 +1,43 @@
+.toggle {
+    line-height: 0;
+}
+.toggle .toggle-line {
+    background: #fff;
+    display: block;
+    height: 2px;
+    left: 0;
+    position: relative;
+    top: 0;
+    transition: 0.4s;
+    transition-property: left, opacity, top, transform, width;
+    width: 100%;
+}
+.toggle .toggle-line:first-child {
+    margin-top: 1px;
+}
+.toggle .toggle-line:not(:first-child) {
+    margin-top: 4px;
+}
+.toggle.toggle-arrow :first-child {
+    left: 50%;
+    top: 2px;
+    transform: rotate(45deg);
+    width: 50%;
+}
+.toggle.toggle-arrow :last-child {
+    left: 50%;
+    top: -2px;
+    transform: rotate(-45deg);
+    width: 50%;
+}
+.toggle.toggle-close :nth-child(2) {
+    opacity: 0;
+}
+.toggle.toggle-close :first-child {
+    top: 6px;
+    transform: rotate(45deg);
+}
+.toggle.toggle-close :last-child {
+    top: -6px;
+    transform: rotate(-45deg);
+}

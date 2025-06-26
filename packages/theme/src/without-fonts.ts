@@ -1,12 +1,7 @@
-import type { Theme } from 'vitepress'
-import Layout from './components/Layout.vue'
+import './styles'
 
-import './styles/var.css'
+export * from './without-style'
 
-const theme: Theme = {
-  Layout,
-}
+export { default } from './without-style'
 
 export type * from 'vitepress-theme-iszy/types'
-
-export default theme

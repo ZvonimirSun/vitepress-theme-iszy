@@ -1,0 +1,23 @@
+// CSS Style Guide: https://codeguide.co/#css
+
+$scheme : 'Gemini';
+
+// Variables Layer
+// --------------------------------------------------
+@use '_variables/base';
+
+
+// Mixins Layer
+// --------------------------------------------------
+@use 'mixins';
+
+
+// Dark mode colors
+// --------------------------------------------------
+@use '_colors';
+
+// Common Layer
+// --------------------------------------------------
+
+// Scaffolding
+@use '_common/scaffolding';
